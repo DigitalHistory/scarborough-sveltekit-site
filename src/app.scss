@@ -1,1 +1,16 @@
 /* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+
+$primary:blue;
+$emphasis: white;
+nav.navbar {
+    background-color: $primary;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ul.navlinks {
+        display: flex;
+        li, li a {list-style: none; color: $emphasis; text-decoration: none;}
+        li a.active {text-decoration:underline;}
+    }
+}

@@ -1,16 +1,16 @@
 <script>
-	import { scale } from 'svelte/transition';
-	import { expoInOut } from 'svelte/easing';
-	export let title;
-  export let image;
-	export let language;
-	export let postBundle;
-	export let pdfLink;
-	export let contents;
+ import { scale } from 'svelte/transition';
+ import { expoInOut } from 'svelte/easing';
+ export let title;
+ export let image;
+ export let language;
+ export let postBundle;
+ export let pdfLink;
+ export let contents;
 </script>
 
 
-<section class="post" transition:scale={{duration: 1000, easing: expoInOut}}>
+<section  on:click class="post" transition:scale={{duration: 1000, easing: expoInOut}}>
 	
   <section class="post-meta">
     <h1>{title}</h1>
