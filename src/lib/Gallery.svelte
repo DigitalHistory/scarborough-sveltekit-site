@@ -62,7 +62,7 @@
    console.log("HELLO");
    posts.update(p => data.data);
    $metastore.themes=getMeta($posts, "themes")
-   /* $metastore.tags=getMeta($posts, "tags") */
+   $metastore.tags=getMeta($posts, "tags")
    allFacets = [{field: "themes", terms: $metastore.themes}]
    console.log ("POSTS", posts, "META", $metastore)
  }
@@ -79,7 +79,6 @@
  function filterPosts () {
    console.log("RUNNING FILTERPOSTS")
    let foundPosts = $posts
-   console.log("START", foundPosts)
    let filterNames = Object.getOwnPropertyNames($filters)
    console.log("FILTERNAMES", filterNames)
    for (let name of filterNames) {
@@ -100,11 +99,17 @@
      })
    }
    console.log(foundPosts)
+   if (searchTerm && searchTerm.length > 0) {
+     foundPosts = foundPosts.filter(post =>{
+       let title = post.title?.toLowerCase() || post.id.toLowerCase(),
+           content = post.contents.toLowerCase()
+       console.log("POST TITLE", title)
+       return title.includes(searchTerm.toLowerCase()) || content.includes(searchTerm.toLowerCase())
+     })
+   }
+   
    filteredposts = foundPosts
  }
-
- setContext('filterPosts', filterPosts)
-
  function searchposts () {	
                          return filteredposts = $posts.filter(post => {
 			   let postTitle = post.id.toLowerCase();
@@ -114,30 +119,36 @@
                          }  
 
  $: $filters && filterPosts()
+ $: console.log("TOTAL METASTORE", $metastore)
 </script>
 
 <main class="content" id="fullGallery">
   <aside id="facets">
+    <h2>Filter Results</h2>
     <section id="query-section">
-      <Search bind:searchTerm on:input={searchposts} />
+      <Search bind:searchTerm on:input={filterPosts} />
     </section>	
 
-    <FacetSet facets={allFacets} />
+    <FacetSet />
   </aside>
-  <section id="postgallery">
-    {#each filteredposts as {title,  contents}}    
-      <Postcard on:click={() => showFull({title, contents})} {title} 
-                {contents} />
-    {/each}
-  </section>
-  </main>	
+  {#if filteredposts.length === 0 }
+    <NoResults />
+  {:else }
+    <section id="postgallery">
+      {#each filteredposts as {title,  contents}}    
+        <Postcard on:click={() => showFull({title, contents})} {title} 
+                  {contents} />
+      {/each}
+    </section>
+  {/if}
+</main>	
 
 
 <style lang="scss">
  main#fullGallery {
      margin-top: 10rem;
      display: grid;
-     grid-template-columns: 1fr 5fr;
+     grid-template-columns: 20rem 5fr;
      gap: 5px;
      > #facets {
          /* background-color: green; */
@@ -150,5 +161,10 @@
      }
  }
 
- 
+ @media (max-width: 40.0rem) {
+     main#fullGallery {
+         grid-template-columns: 1fr;
+         #postgallery {grid-template-columns: 1fr;}
+     }
+ }
 </style>
