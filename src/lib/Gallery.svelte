@@ -81,15 +81,15 @@
    let foundPosts = $posts
    console.log("START", foundPosts)
    let filterNames = Object.getOwnPropertyNames($filters)
-   console.log(filterNames)
+   console.log("FILTERNAMES", filterNames)
    for (let name of filterNames) {
      let terms = $filters[name] || []
-     console.log("TERMS", terms)
+     console.log("TERMS for ", name,  terms)
      foundPosts = foundPosts.filter(post => {
-       if (!terms || terms.length != 0) {return post}
+       if (!terms || terms.length == 0) {return post}
        let retain = false
        terms.forEach(term => {
-         console.log("THESTUFF", post[name], term, retain)
+         console.log("POST VALUES", post[name], term, retain)
          if (Array.isArray(post[name]) && post[name].includes(term) ) {
            retain = true
          } else if (post[name] == term) {retain = true};
@@ -113,7 +113,7 @@
 		         });
                          }  
 
- 
+ $: $filters && filterPosts()
 </script>
 
 <main class="content" id="fullGallery">
