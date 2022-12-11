@@ -1,16 +1,47 @@
-/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */ /* Import only what you need from Bulma */
+@import 'milligram-scss/dist/milligram';
 
-$primary:blue;
-$emphasis: white;
-nav.navbar {
-    background-color: $primary;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+// @import 'bulma/sass/utilities/_all';
+// $card-background-color: $scheme-invert;
+// $card-color: $text-invert;
 
-    ul.navlinks {
-        display: flex;
-        li, li a {list-style: none; color: $emphasis; text-decoration: none;}
-        li a.active {text-decoration:underline;}
-    }
-}
+//  @import 'bulma/sass/base/_all';
+//  @import 'bulma/sass/elements/_all';
+//  @import 'bulma/sass/form/_all';
+//  @import 'bulma/sass/components/breadcrumb';
+//  @import 'bulma/sass/components/card';
+//  @import 'bulma/sass/components/level';
+//  @import 'bulma/sass/components/media';
+//  @import 'bulma/sass/components/menu';
+//  @import 'bulma/sass/components/message';
+//  @import 'bulma/sass/components/navbar';
+//  @import 'bulma/sass/components/panel';
+//  @import 'bulma/sass/components/tabs';
+// @import 'bulma/sass/grid/_all';
+// @import 'bulma/sass/helpers/_all';
+// @import 'bulma/sass/layout/_all';
+
+ // $card-color: $text-invert;
+
+//$primary: blue;
+//$emphasis: white;
+
+// nav.navbar {
+// 	background-color: $primary;
+// 	display: flex;
+// 	justify-content: space-between;
+// 	align-items: center;
+
+// 	ul.navlinks {
+// 		display: flex;
+// 		li,
+// 		li a {
+// 			list-style: none;
+// 			color: $emphasis;
+// 			text-decoration: none;
+// 		}
+// 		li a.active {
+// 			text-decoration: underline;
+// 		}
+// 	}
+// }
