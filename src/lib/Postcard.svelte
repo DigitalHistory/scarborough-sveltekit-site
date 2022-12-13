@@ -17,26 +17,28 @@
 </script>
 
 
-<section class="card post-card" on:click  transition:scale={{duration: 1000, easing: expoInOut}}>
+<section class="card post-card"  transition:scale={{duration: 1000, easing: expoInOut}}>
   <header class="card-header">
-    <h2 class="card-header-title">
+    <h2 class="card-header-title"  on:click>
       {title}
     </h2>
   </header>
-  <div class="card-content">
+  <div class="card-content" on:click >
     {#if image }
       <img class="featured" src={image} alt="Featured Image for this Article">
     {:else}
       {@html contents}
     {/if}
   </div>
-  <footer class="card-footer">
-    <p class="card-footer-item">
-      <span>
-        <a href="{basepath}{relpath}">Edit the source file here</a>
-      </span>
-    </p>
-  </footer>
+    <footer class="card-footer">
+      <a href="{basepath}{relpath}">
+        <p class="card-footer-item">
+          <span>
+            Edit the source file here
+          </span>
+        </p>
+      </a>
+    </footer>
 </section>
 
 
