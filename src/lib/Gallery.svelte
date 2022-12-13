@@ -64,7 +64,7 @@
    
    posts.update(p => data.data);
    $metastore.themes=getMeta($posts, "themes")
-   $metastore.tags=getMeta($posts, "tags")
+   $metastore.periods=getMeta($posts, "periods")
    allFacets = [{field: "themes", terms: $metastore.themes}]
    console.log ("POSTS", posts, "META", $metastore)
  }
