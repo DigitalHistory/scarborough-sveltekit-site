@@ -12,9 +12,14 @@
  import FacetSet from '$lib/FacetSet.svelte'
  import { getContext } from 'svelte';
  const { open } = getContext('simple-modal');
- const showFull = (allProps) => { console.log(allProps); open(PostModal, allProps); }
-   const showSurprise = () => open(PostModal, { title: "It's a modal!" });
- let allFacets 
+ const showFull = (allProps) => { console.log(allProps);
+                                open(PostModal,
+                                  allProps,
+                                  { closeButton: false,
+                                    styleWindow: { width: '40em' },
+                                    styleContent: {width: 'unset', padding: '2.5rem'}
+                                }) }
+   let allFacets 
  
  function getMeta (posts, field) {
    let meta = []
@@ -151,7 +156,7 @@
      #postgallery {
          display: grid;
          grid-template-columns: repeat(auto-fit, 30rem);
-         gap: 10px;
+         gap: 15px 10px;
          /* margin-top: 10rem; */
      }
  }
