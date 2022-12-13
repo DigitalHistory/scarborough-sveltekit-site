@@ -1,27 +1,21 @@
 <script>
  import { scale } from 'svelte/transition';
  import { expoInOut } from 'svelte/easing';
+ const basepath="https://github.com/DigitalHistory/scarborough-history/edit/main/articles/"
  export let title;
  export let image;
  export let language;
  export let postBundle;
  export let pdfLink;
  export let contents;
+ export let updated;
+ export let relpath;
+ import { format } from 'date-fns'
+
+ $: console.log(image)
+ console.log(updated)
 </script>
 
-<!-- 
-     <section  on:click class="post" transition:scale={{duration: 1000, easing: expoInOut}}>
-     
-     <section class="post-meta">
-     <h1>{title}</h1>
-     </section> 
-     
-     <section class="post-content">
-     {@html contents}
-     </section>
-     
-     </section>
--->
 
 <section class="card post-card" on:click  transition:scale={{duration: 1000, easing: expoInOut}}>
   <header class="card-header">
@@ -30,12 +24,16 @@
     </h2>
   </header>
   <div class="card-content">
-    {@html contents}
+    {#if image }
+      <img class="featured" src={image} alt="Featured Image for this Article">
+    {:else}
+      {@html contents}
+    {/if}
   </div>
   <footer class="card-footer">
     <p class="card-footer-item">
       <span>
-        View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+        <a href="{basepath}{relpath}">Edit the source file here</a>
       </span>
     </p>
   </footer>
@@ -57,6 +55,14 @@
          border-radius: .4rem;
          font-size: 86%;
          overflow: none;
+     }
+     header h2 {
+         font-size: 2.4rem;
+         display: -webkit-box;
+         -webkit-box-orient: vertical;
+         -webkit-line-clamp: 1;
+         overflow: hidden;
+
      }
      .card-content {
          background-color: rgb(230, 230, 230);

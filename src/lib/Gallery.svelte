@@ -58,8 +58,10 @@
  async function fetchPosts () {
    const response = await fetch(endpoint);
    const data = await response.json();
-   data && data.data.forEach((e, i) => {e.title = e.title || e.id})
-   console.log("HELLO");
+   data && data.data.forEach((e, i) => {e.title = e.title || e.id;
+                                       e.updated=e.meta.lastModified;
+                                       e.relpath=e.meta.relativePath.replace(/html$/, "md")})
+   
    posts.update(p => data.data);
    $metastore.themes=getMeta($posts, "themes")
    $metastore.tags=getMeta($posts, "tags")
@@ -110,13 +112,6 @@
    
    filteredposts = foundPosts
  }
- function searchposts () {	
-                         return filteredposts = $posts.filter(post => {
-			   let postTitle = post.id.toLowerCase();
-			   return postTitle.includes(searchTerm.toLowerCase())
-			   return true
-		         });
-                         }  
 
  $: $filters && filterPosts()
  $: console.log("TOTAL METASTORE", $metastore)
@@ -135,9 +130,9 @@
     <NoResults />
   {:else }
     <section id="postgallery">
-      {#each filteredposts as {title,  contents}}    
-        <Postcard on:click={() => showFull({title, contents})} {title} 
-                  {contents} />
+      {#each filteredposts as {title,  contents, image, updated, relpath}}    
+        <Postcard on:click={() => showFull({title, contents, image})} {title} 
+                  {contents} {image} {updated} {relpath} />
       {/each}
     </section>
   {/if}

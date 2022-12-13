@@ -7,11 +7,17 @@
    {title: "Articles", path: "/articles"}
  ]
 
- //import Parent  from './Parent.svelte'
+ const siteTitle = "Scarborough History Demo Project"
+
 </script>
+
+<svelte:head>
+  <title>{ siteTitle }</title>
+</svelte:head>
 <header>
   <section class="top">
-  <span class ='nav-heading nav-brand' >Logo </span>
+    <span class ='nav-heading nav-brand' ><img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Flag_of_Scarborough%2C_Ontario.svg" alt="Scarborough Flag: Stylized Cliffs with Maple Leaf"/> </span>
+    <h1 id="title">{ siteTitle }</h1>
   <input type ='checkbox' class = 'menu-toggle' id ='menu-toggle'>
   <nav class= 'header'>
     <ul>
@@ -26,16 +32,18 @@
   </label>
   </section>
   <section class="sub">
-    <h3>Do not cite</h3>
+    <h3>For demonstration purposes only. Please do not cite</h3>
   </section>
 
 </header>
 
 <!-- <Parent /> -->
-<slot></slot>
+<div id="content">
+  <slot></slot>
+</div>
 
 <footer>
-  more disclaimer
+  This site is a teaching project. Content is not necessarily vetted for accuracy. For more authoritative sources on the history of Scarborough, visit <a href="https://historyofutsc.ca/resources/">the resources page from the History of UTSC website</a>
 </footer>
 
 <style lang="scss">
@@ -48,13 +56,20 @@
      background: #f4f5f6;
      
  }
+ 
  footer {
      min-height: 5rem;
      left: 0;
      bottom: 0;
  }
+ #content {
+     margin-top: 13rem;
+ }
  header {
+     top: 0;
+     height: 12rem;
      border-bottom: 0.1rem solid #d1d1d1;
+     margin-top: 0px;
      section.top {
          input.menu-toggle {
              display: none;
@@ -86,9 +101,14 @@
              }
          }
      }
+     section.sub h3 {
+         font-style: italic;
+         line-height: 1.1;
+         font-size: 2.4rem;
+     }
  }
- .nav-heading {
-     font-size: 3rem;
+ .nav-brand img {
+     max-height: 5rem;
  }
 
  .menu-toggle:checked ~ nav {
@@ -150,15 +170,15 @@
          section.top {
              display: grid;
              min-height: 5rem;
-             grid-template-columns: 1fr auto minmax(37.5rem, 3fr) 1fr;
+             grid-template-columns: 1fr  minmax(37.5rem, 3fr) 1fr;
              .nav-brand {
-                 grid-column: 2/3;
+                 grid-column: 1/2;
              }
+             #title {grid-column: 2/3;}
              nav {
                  all: unset;
                  grid-column: 3/4;
                  display: flex;
-                 justify-content: flex-end;
                  align-items: center;
                  ul {
                      margin-top: 0;

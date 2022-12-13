@@ -1,5 +1,9 @@
 /* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */ /* Import only what you need from Bulma */
 @import 'milligram-scss/dist/milligram';
+p code {
+    color: $color-primary;
+    font-weight: 400;
+}
 
 // @import 'bulma/sass/utilities/_all';
 // $card-background-color: $scheme-invert;
