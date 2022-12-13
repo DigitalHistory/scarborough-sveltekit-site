@@ -9,6 +9,10 @@ Once arrived at the Articles page, you will be presented with a simple faceted s
 The articles found on that page will have been produced under severe time pressure during a brief demonstration. Ordinary citation practice has been suspended for the sake of simplicity. 
 
 
+## Technical note
+
+This website is built with [Svelte](https://svelte.dev/) components in the [SvelteKit](https://kit.svelte.dev/) server framework (for routing). CSS pased on [Milligram](https://github.com/milligram/milligram) (SASS version). Data for posts is captured from [this github repository](https://github.com/DigitalHistory/scarborough-history); Markdown and YAML from individual articles is [written to JSON stored here](https://lovely-youtiao-5c9c43.netlify.app/output.json) by the magic of [Netlify](https://www.netlify.com/).
+
 </div>
 
 <style lang="scss">
